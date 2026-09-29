@@ -143,6 +143,11 @@ unzip full_history.zip        # one CSV per ticker: Date, Open, High, Low, Close
 
 Copy each `<TICKER>.csv` into `Dataset/`. The raw exports use lowercase column names and descending date order; `load_stock_data()` in `train_single_stock.py` standardizes the headers and re-sorts chronologically, so no manual cleanup is needed.
 
+> [!WARNING]
+> **License:** the *code* here is MIT, but the *datasets* keep their own terms. FNSPID is released under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) (non-commercial use only); the Kaggle news dataset is governed by the terms on its dataset page. Cite both sources when building on this work — see [Citation](#-citation).
+
+
+
 ### 3 · Sentiment model resource
 
 The sentiment features are produced by **`distilbert-base-uncased-finetuned-sst-2-english`** — a two-label (NEGATIVE / POSITIVE) DistilBERT classifier. **The weights are not shipped with this repository: download them yourself** (≈ 256 MB) and place the files in `sentiment_model/`.
@@ -150,17 +155,12 @@ The sentiment features are produced by **`distilbert-base-uncased-finetuned-sst-
 | Source | Link |
 | --- | --- |
 | Official — Hugging Face | <https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english> |
-| China mirror — recommended, much faster | <https://hf-mirror.com/distilbert-base-uncased-finetuned-sst-2-english> |
 
 ```bash
-# Option A — Hugging Face CLI via the mirror endpoint (fastest in mainland China)
-HF_ENDPOINT=https://hf-mirror.com huggingface-cli download \
-  distilbert-base-uncased-finetuned-sst-2-english --local-dir sentiment_model
-
-# Option B — official Hugging Face endpoint
+# Option A — official Hugging Face endpoint
 huggingface-cli download distilbert-base-uncased-finetuned-sst-2-english --local-dir sentiment_model
 
-# Option C — clone the repository directly
+# Option B — clone the repository directly
 git clone https://hf-mirror.com/distilbert-base-uncased-finetuned-sst-2-english sentiment_model
 ```
 
@@ -168,9 +168,6 @@ Expected contents of `sentiment_model/`: `config.json`, `model.safetensors`, `to
 
 > [!IMPORTANT]
 > Downloading is **required** — the news-scoring step below has no way to produce sentiment features without this checkpoint. Placing the files manually is recommended; if `sentiment_model/` holds no weights, `use_sentiment_model.py` falls back to fetching the checkpoint from the Hugging Face Hub at run time, which you can point at the mirror with `HF_ENDPOINT=https://hf-mirror.com python use_sentiment_model.py`.
-
-> [!WARNING]
-> **License:** the *code* here is MIT, but the *datasets* keep their own terms. FNSPID is released under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) (non-commercial use only); the Kaggle news dataset is governed by the terms on its dataset page. Cite both sources when building on this work — see [Citation](#-citation).
 
 ---
 

@@ -2,7 +2,7 @@
 
 # ⚛️ HybridQNN
 
-**Hybrid Quantum-Classical Neural Networks for Adjusted Closing-Price Regression**
+**Data-Reuploading Quantum Features for Adjusted Closing-Price Regression**
 
 A data re-uploading variational quantum circuit fused with a classical MLP head,
 trained to predict the **next trading day's adjusted close** from price/volume features —

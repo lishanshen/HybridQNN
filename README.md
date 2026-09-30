@@ -368,7 +368,7 @@ If you use this code, please cite it — and the two datasets it builds on:
 
 ```bibtex
 @misc{hybridqnn2026,
-  title  = {HybridQNN: Hybrid Quantum-Classical Neural Networks for Stock Forecasting},
+  title  = {HybridQNN: Data-Reuploading Quantum Features for Adjusted Closing-Price Regression},
   author = {<LinHong>},
   year   = {2026},
   url    = {https://github.com/lishanshen/HybridQNN}
